@@ -1,3 +1,194 @@
+## Version 1.8.4
+
+##### Improvements
+- Bundling OS-specific dependencies only when needed
+  - This removes a file from Windows bundles that tripped Windows Defender into finding a false positive
+- Importing: ensuring arbitrarily large notes collections containing arbitrarily many files with the same name are still imported correctly, assuming the underlying importing library can parse the collection in the first place
+
+##### Bug Fixes
+- Editor: disabled automatic clipboard copying when selecting in favor of being able to create multiple cursors while dragging with the middle click (Linux)
+- Ensuring both creation date and modification date are updated when duplicating a note
+- Ensuring paste actions when dragging with the middle click are only prevented inside the editor (Linux)
+- Fixed misalignment in loose task lists
+- Fixed some regexes that were wrongly expecting to match at least one character in certain places
+- Multi-cursors: using “Ctrl+MouseEvent” rather than “Alt+MouseEvent” as the latter switches the focus to the menu bar (Windows)
+
+## Version 1.8.3
+
+##### Improvements
+- Cheatsheet: added a section about escaping
+- Cheatsheet: mentioning double- and triple-backticks inline code
+- Cheatsheet: mentioning emails wrapped in angle brackets
+- Cheatsheet: mentioning links with custom title attributes
+- Cheatsheet: opening `<details>` tags by default
+- Export: opening `<details>` elements by default when exporting to PDF
+- Export: using a slightly clearer folder export name
+- Improved default styling of `<details>` and `<summary>` elements
+- Importing from Evernote: preserving links to attachments, especially if they are web-clipped attachments
+- Importing from Evernote: preserving a link to the source of the web-clipped page
+- Importing from Boostnote: rewriting links to attachments
+- KaTeX: rendering “math” codeblock with it too
+- Menu: added “Alt+InitialCharacter” shortcuts for all main submenus
+- Light theme: improved active item contrast in the sidebar
+- Themes: updated scrollbar colors
+
+##### Bug Fixes
+- About window: ensuring it is rendered without extra/missing spacing across platforms
+- Context menu: ensuring extra separators are removed correctly
+- Context menu: ensuring menu items for pinning/unpinning a note are provided
+- Editor: more reliably showing scrollbars if necessary
+- Ensuring “Tags” gets uncollapsed too if necessary
+- Ensuring a paste action is not triggered when dragging with the mouse’s middle button (Linux)
+- Ensuring all ICANN TLDs are supported when auto-linking urls
+- Ensuring all special-use ICANN TLDs are supported when auto-linking urls
+- Ensuring each separate window remembers its own data directory after being reloaded
+- Ensuring file watching is always performed efficiently, even in signed production builds (macOS)
+- Ensuring links with a custom title attribute are parsed correctly
+- Ensuring links with no protocol are handled conrrectly inside `<img>` and `<source>` elements
+- Ensuring no other modal window can be opened while asking to select a data directory
+- Ensuring relative paths that don’t start with a dot are resolved too
+- Ensuring the app is reset properly when the current data directory becomes unavailable
+- Ensuring the preview of the current note gets refreshed when necessary
+- Exporting: more reliable detection of useful CSS
+- Fixed a bug that could have prevented the UI from updating after a particular series of filesystem events
+- Fixed an issue that caused multiple identical actions to occur instead of one
+- Fixed an issue regarding resolving absolute UNC-style paths
+- Fixed misalignment when dealing with multi-line code blocks nested in lists
+- Importing: improved conversion of text-align-ed tags
+- Importing: improved reliability when importing notes with non-string titles
+- Importing: more reliably importing large collections of notes
+- Importing from Evernote: more reliably importing web-clipped attachments
+- Markdown: improved double-backticks inline code detection
+- More reliable “rename” filesystem event detection
+- More reliable “change” filesystem event detection where the file gets unlinked and recreated quickly
+- More reliable `<markdown>` tag parsing
+- Multi-cursors: using “Ctrl+MouseEvent” rather than “Alt+MouseEvent” as the latter conflicts with OS-level shortcuts (Linux)
+- PHP: optimized syntax highlighting for snippets, making the starting `<?`/`<?php` token optional
+- Syntax highlighting: fixed support for strikethrough text under the dark theme
+- Syntax highlighting: improved double-backticks inline code detection
+- Syntax highlighting: improved handling of code blocks nested in lists
+- Syntax highlighting: improved support for triple-backticks (or more) inline code
+- Updater: avoiding showing the same toast multiple times at once whenever possible
+- Updater: ensuring a fresh online status is retrieved before attempting to check for updates
+
+## Version 1.8.2
+
+##### Improvements
+- Cheatsheet: mentioning urls and emails wrapped in angle brackets
+- Link sharing: asking for confirmation before generating the shareable link
+- Link sharing: added support for querying `https://echo.notable.md/delete/[ID]` for immediately deleting a shared note
+- Editor: always showing the scrollbar, for consistency (Windows) (Linux)
+- Navigator: retrieving public IPv4 by querying `ip.notable.md` rather than `ipv4.icanhazip.com`
+- Navigator: retrieving online status by querying `ip.notable.md` rather than `api.github.com`
+- Syntax highlighting: added support for links and emails wrapped in angle brackets
+- Zen mode: showing a draggable titlebar on hover (macOS)
+- Showing a toast when copying a code block to the clipboard
+
+##### Bug Fixes
+- AsciiMath and KaTeX: improved expression detection when the expression starts with the `<` character
+- AsciiMath and KaTeX: ensuring the outputted HTML doesn’t get messed up by the Markdown compiler
+- KaTeX: improved multi-line block syntax highlighting
+- Editor: ensuring it receives the focus when creating or duplicating a note
+- Editor: improved state restoration logic
+- Export: ensuring base64-encoded font files are exported properly
+- Export: ensuring code blocks can wrap when exporting to PDF
+- Multi-editor: ensuring Shift-selecting works even when CtrlOrCmd is pressed
+- Multi-editor: ensuring the currently active note can be displayed as deselected
+- Tutorial: ensuring the online link works
+- Asking to select a data directory if the current one is unavailable
+- Improved support for HTML attributes that are wrapped in single quotes or unwrapped
+- Improved unfenced codeblocks detection
+- Showing an alert when switching to a data directory that doesn't contain any notes
+- Showing an error if the app can’t be moved into the `/Applications` folder (macOS)
+- Ensuring context menus account for the current zoom factor
+- Ensuring deeply nested mixed lists and tasks are properly aligned regardless of their order
+- Ensuring double quotes don’t get transformed to single quotes in code blocks
+- Ensuring filesystem events detected outside of the current data directory are ignored
+- Ensuring regexes that should only match horizontal whitespace characters don’t also match vertical ones
+- Ensuring relative paths are resolved relative to the actual file path of the current note
+- Ensuring that if the current data directory is removed or renamed the app detects it and reacts to it
+- Expading the necessary parent tags when selecting an hidden tag
+
+## Version 1.8.1
+
+##### Improvements
+- Updated Electron to v7.1.1
+- Syntax highlighting: added many language aliases supported by GitHub
+- Syntax highlighting: improved JSON language support
+
+##### Bug Fixes
+- More reliably detecting the front matter
+- Ensuring checkboxes ids are incremented properly
+- Ensuring heading ids are incremented properly
+- Ensuring heading ids are generated properly even when containing HTML elements
+- Ensuring Windows-style absolute paths and UNC paths are supported
+- Importing: more reliably importing `.enex` files
+- Importing: throwing an error for huge files (> 1GB)
+  - If you're hitting this error just import your notes in smaller chunks
+
+## Version 1.8.0
+
+##### New Features
+- Upgraded Electron to v7
+- Added a button for generating a share link (_Experimental_)
+  - Notes will be stored in the server only for 24h at maximum
+  - Features that require JavaScript to work won't work and only linked image attachments can be shared this way
+- Rewritten build toolchain
+  - Mac: disabled `pkg` bundle
+  - Mac: enabled notarization
+  - Windows: disabled `portable` bundle
+  - Windows: added support for 32-bit systems
+  - Linux: enabled `pacman` bundle
+- Implemented some telemetry data
+  - You can turn them off by setting `"telemetry": false` in `~/.notable.json`
+  - You can check what data is being transmitted via the "Network" section of the devtools
+  - IP addresses are anonymized by default (the last portion of your IPv4 gets zeroed)
+- Non-overlay scrollbars are now themed
+  - This improves the look of the dark theme under Windows significantly
+- Syntax highlighting: added support for ABAP, MIPS, pascaligo, Sophia ML and Twig
+- Mermaid: opening diagrams in the browser rather than in their own windows
+- Added an “Help -> Sponsor” menu item
+- Setted minimum allowed height to 250px
+- Setting minimum allowed width dynamically depending on the active view mode
+- Rewritten “Select Data Directory...” window as a modal window
+
+##### Improvements
+- Markdown: improved syntax highlighting for headers containing HTML entities
+- Setting dark appearance also when using dark themes
+- Updating window background color when changing themes
+- Updated `dmg` bundle's background image
+- Updated homepage url
+- Updated contact urls
+- Updated manual download URL
+- Updated some dependencies
+- Removed a few dependencies
+- Ensuring all dependencies are bundled via WebPack
+  - The size of the shipped minified codebase (minus Electron) is now about 5.5MB
+- Lazy loading some rarely used dependencies
+
+##### Bug Fixes
+- Syntax highlighting: ensuring “c++” is a supported language name
+- Ensuring single notes changes are detected properly
+- Fixed a race condition that could have lead to data loss when using third-party synchronization services
+- Fixed support for legacy CR line endings
+- More reliably retrieving and writing to unused paths
+- Retrying failed actions more reliably
+- Writing files atomically, ensuring files can’t get corruped while getting written to disk
+
+## Version 1.7.3
+
+##### Improvements
+- Markdown: improved syntax highlighting for lists starting with multiple list markers
+- Improved HTML entities detection
+- Using a more precise timestamp in pasted image attachments
+
+##### Bug Fixes
+- ASCIIMath: ensuring ampersands used inside KaTeX code aren’t considered as part of an ASCIIMath expression
+- Highlighter: ensuring it doesn’t break the “copy code to clipboard” feature
+- Editor: disabling default paste behavior more reliably
+- Ensuring only relative links to supported Markdown extensions will be recognized as links to notes
+- Retrieving “data-*” attributes more reliably, ensuring strings remain strings
+
 ## Version 1.7.2
 
 ##### Bug Fixes
